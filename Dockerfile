@@ -1,0 +1,48 @@
+FROM alpine:3.12
+
+# Will be replaced at the building step. Used to know
+# which version of Minecraft Forge should be downloaded.
+ARG MINECRAFT_VERSION=1.16.4
+ARG FORGE_VERSION=1.16.4-35.1.4
+
+# Specifying Java envs.
+ENV JAVA_VERSION_MAJOR=8
+ENV JAVA_VERSION_MINOR=112
+ENV JAVA_VERSION_BUILD=15
+ENV JAVA_PACKAGE=server-jre
+ENV JAVA_HOME=/opt/jdk
+ENV PATH=${PATH}:/opt/jdk/bin
+
+# Specifying OS envs.
+ENV LANG=C.UTF
+ENV UID=1000
+ENV GUID=1000
+
+LABEL maintainer="Kamarad Coal <alex@renoki.org>"
+
+WORKDIR /minecraft
+
+ADD /minecraft/run.sh /minecraft/run.sh
+ADD /minecraft/server.properties /minecraft/server.properties
+
+# Install packages.
+RUN apk upgrade --update && \
+    apk add --update wget curl ca-certificates openssl bash git screen util-linux sudo shadow nss && \
+    update-ca-certificates && \
+    apk add openjdk8-jre
+
+# Add "kamarad" user than can access "/minecraft"
+RUN addgroup -g 1000 -S kamarad && \
+    adduser -u 1000 -S kamarad -G kamarad -h /minecraft && \
+    echo "kamarad ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/kamarad && \
+    chown kamarad:kamarad /minecraft
+
+# Download & install the JAR file for the current version.
+RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/${FORGE_VERSION}/forge-${FORGE_VERSION}-installer.jar && \
+    java -jar forge-${FORGE_VERSION}-installer.jar --installServer && \
+    rm -rf forge-${FORGE_VERSION}-installer.jar forge-${FORGE_VERSION}-installer.jar.log && \
+    mv forge-${FORGE_VERSION}-${MINECRAFT_VERSION}-universal.jar forge.jar
+
+EXPOSE 25565
+
+ENTRYPOINT ["/minecraft/run.sh"]
