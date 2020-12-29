@@ -23,6 +23,7 @@ LABEL maintainer="Kamarad Coal <alex@renoki.org>"
 WORKDIR /minecraft
 
 ADD /minecraft/run.sh /minecraft/run.sh
+ADD /minecraft/cleanup.sh /minecraft/cleanup.sh
 ADD /minecraft/server.properties /minecraft/server.properties
 
 # Install packages.
@@ -38,10 +39,11 @@ RUN addgroup -g 1000 -S kamarad && \
     chown kamarad:kamarad /minecraft
 
 # Download & install the JAR file for the current version.
-RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/$FORGE_VERSION/forge-$FORGE_VERSION-installer.jar && \
-    java -jar forge-$FORGE_VERSION-installer.jar --installServer && \
-    rm -rf forge-$FORGE_VERSION-installer.jar forge-$FORGE_VERSION-installer.jar.log && \
-    mv forge-$FORGE_VERSION-$MINECRAFT_VERSION-universal.jar forge.jar
+RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/${FORGE_VERSION}/forge-${FORGE_VERSION}-installer.jar && \
+    java -jar forge-${FORGE_VERSION}-installer.jar --installServer && \
+    chmod +x cleanup.sh && \
+    sh cleanup.sh && \
+    rm -rf cleanup.sh
 
 EXPOSE 25565
 
