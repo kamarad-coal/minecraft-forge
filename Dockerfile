@@ -44,7 +44,8 @@ RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/${FORGE
     java -jar forge-${FORGE_VERSION}-installer.jar --installServer && \
     chmod +x cleanup.sh && \
     sh cleanup.sh && \
-    rm -rf cleanup.sh
+    rm -rf cleanup.sh && \
+    chmod +x /minecraft/run.sh
 
 EXPOSE 25565
 
