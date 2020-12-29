@@ -40,6 +40,7 @@ RUN addgroup -g 1000 -S kamarad && \
 
 # Download & install the JAR file for the current version.
 RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/${FORGE_VERSION}/forge-${FORGE_VERSION}-installer.jar && \
+    mkdir /minecraft/mods && \
     java -jar forge-${FORGE_VERSION}-installer.jar --installServer && \
     chmod +x cleanup.sh && \
     sh cleanup.sh && \
