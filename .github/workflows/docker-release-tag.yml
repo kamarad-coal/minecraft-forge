@@ -1,9 +1,12 @@
-name: Release
+name: Release Docker Tag
 
 on:
   push:
     tags:
       - "*"
+    branches-ignore:
+      - "*"
+  pull_request:
     branches-ignore:
       - "*"
 

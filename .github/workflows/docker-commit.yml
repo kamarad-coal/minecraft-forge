@@ -1,10 +1,13 @@
-name: Releasing Latest Tag
+name: Build Commit Image
 
 on:
   push:
     branches:
-      - master
+      - "*"
     tags-ignore:
+      - "*"
+  pull_request:
+    branches:
       - "*"
 
 jobs:
@@ -67,7 +70,11 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: kamaradcoal/minecraft-forge:${{ matrix.forge }}-latest
+          tags: kamaradcoal/minecraft-forge:${{ matrix.forge }}-${{ github.sha }}
           build-args: |
             MINECRAFT_VERSION=${{ matrix.minecraft }}
             FORGE_VERSION=${{ matrix.forge }}
+
+      - name: Output container name
+        run: |
+          echo "kamaradcoal/minecraft-forge:${{ matrix.forge }}-${{ github.sha }}"
