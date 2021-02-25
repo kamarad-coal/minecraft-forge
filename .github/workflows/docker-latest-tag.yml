@@ -46,7 +46,7 @@ jobs:
           - minecraft: 1.8.9
             forge: 1.8.9-11.15.1.1722
 
-    name: Tag Latest for MC ${{ matrix.minecraft }} && Forge ${{ matrix.forge }}
+    name: Tag Latest for MC ${{ matrix.minecraft }} & Forge ${{ matrix.forge }}
 
     steps:
       - uses: actions/checkout@v2
