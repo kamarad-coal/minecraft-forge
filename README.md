@@ -37,6 +37,8 @@ For example, this is going to be the latest tag for Minecraft Forge `1.16.5-36.0
 kamaradcoal/minecraft-forge:1.16.5-36.0.43-latest
 ```
 
+### Version Specific Tags
+
 For version-specific tags, you might use the following image and tag, `1.0.0` being the repo tag:
 
 ```
@@ -49,6 +51,8 @@ For Minecraft version-specific tags, you might use the following image and tag, 
 kamaradcoal/minecraft-forge:1.16.5-1.0.0
 ```
 
+### Minecraft Majors and Minor versions
+
 You can also specify major repo versions, where `1.0` means `1.0.x`:
 
 ```
@@ -59,6 +63,18 @@ You can also specify major.minor repo versions, where `1` means `1.x` (all 1.x v
 
 ```
 kamaradcoal/minecraft-forge:1.16.5-1
+```
+
+### Latest Tags
+
+For latest tags, use `latest` instead any other version, either by Minecraft version or by Forge version:
+
+```
+kamaradcoal/minecraft-forge:1.16.5-latest
+```
+
+```
+kamaradcoal/minecraft-forge:1.16.5-36.0.43-latest
 ```
 
 ## Kubernetes Integration

@@ -51,6 +51,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Docker meta
+        id: docker_meta
+        uses: crazy-max/ghaction-docker-meta@v1
+        with:
+          images: kamaradcoal/minecraft-forge
+          tag-semver: |
+            ${{ matrix.forge }}-latest
+            ${{ matrix.minecraft }}-latest
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
