@@ -12,6 +12,7 @@ Kamarad Coal tests & builds only the latest patch versions for each minor versio
 
 The following Minecraft Forge versions are deployed on an day-to-day basis:
 
+- `1.16.5-36.0.43`
 - `1.16.4-35.1.4`
 - `1.15.2-31.2.0`
 - `1.14.4-28.2.0`
@@ -30,16 +31,34 @@ Forge builds support multiple Minecraft versions for each Github tag. The format
 kamaradcoal/minecraft-forge:[forge_version]-[repo_tag]
 ```
 
-For example, this is going to be the latest tag for Minecraft Forge `1.16.4-35.1.4`:
+For example, this is going to be the latest tag for Minecraft Forge `1.16.5-36.0.43`:
 
 ```
-kamaradcoal/minecraft-forge:1.16.4-35.1.4-latest
+kamaradcoal/minecraft-forge:1.16.5-36.0.43-latest
 ```
 
 For version-specific tags, you might use the following image and tag, `1.0.0` being the repo tag:
 
 ```
-kamaradcoal/minecraft-forge:1.16.4-35.1.4-1.0.0
+kamaradcoal/minecraft-forge:1.16.5-36.0.43-1.0.0
+```
+
+For Minecraft version-specific tags, you might use the following image and tag, where `1.0.0` is the repo tag and `1.16.5` is the Minecraft version:
+
+```
+kamaradcoal/minecraft-forge:1.16.5-1.0.0
+```
+
+You can also specify major repo versions, where `1.0` means `1.0.x`:
+
+```
+kamaradcoal/minecraft-forge:1.16.5-1.0
+```
+
+You can also specify major.minor repo versions, where `1` means `1.x` (all 1.x versions):
+
+```
+kamaradcoal/minecraft-forge:1.16.5-1
 ```
 
 ## Kubernetes Integration

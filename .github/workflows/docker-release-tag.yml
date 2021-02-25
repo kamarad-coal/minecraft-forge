@@ -19,6 +19,7 @@ jobs:
     strategy:
       matrix:
         minecraft:
+          - 1.16.5
           - 1.16.4
           - 1.15.2
           - 1.14.4
@@ -29,6 +30,8 @@ jobs:
           - 1.9.4
           - 1.8.9
         include:
+          - minecraft: 1.16.5
+            forge: 1.16.5-36.0.43
           - minecraft: 1.16.4
             forge: 1.16.4-35.1.4
           - minecraft: 1.15.2
@@ -48,10 +51,21 @@ jobs:
           - minecraft: 1.8.9
             forge: 1.8.9-11.15.1.1722
 
-    name: Tag Release for Minecraft Forge ${{ matrix.forge }}
+    name: Tag Release for MC ${{ matrix.minecraft }} && Forge ${{ matrix.forge }}
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Docker meta
+        id: docker_meta
+        uses: crazy-max/ghaction-docker-meta@v1
+        with:
+          images: kamaradcoal/minecraft-forge
+          tag-semver: |
+            ${{ matrix.forge }}-{{version}}
+            ${{ matrix.minecraft }}-{{version}}
+            ${{ matrix.minecraft }}-{{major}}
+            ${{ matrix.minecraft }}-{{major}}.{{minor}}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -74,7 +88,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: kamaradcoal/minecraft-forge:${{ matrix.forge }}-${{ steps.tag.outputs.tag }}
+          context: .
+          tags: ${{ steps.docker_meta.outputs.tags }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
           build-args: |
             MINECRAFT_VERSION=${{ matrix.minecraft }}
             FORGE_VERSION=${{ matrix.forge }}

@@ -19,6 +19,7 @@ jobs:
     strategy:
       matrix:
         minecraft:
+          - 1.16.5
           - 1.16.4
           - 1.15.2
           - 1.14.4
@@ -29,6 +30,8 @@ jobs:
           - 1.9.4
           - 1.8.9
         include:
+          - minecraft: 1.16.5
+            forge: 1.16.5-36.0.43
           - minecraft: 1.16.4
             forge: 1.16.4-35.1.4
           - minecraft: 1.15.2
@@ -48,7 +51,7 @@ jobs:
           - minecraft: 1.8.9
             forge: 1.8.9-11.15.1.1722
 
-    name: Tag Commit for Minecraft Forge ${{ matrix.forge }}
+    name: Tag Commit for MC ${{ matrix.minecraft }} && Forge ${{ matrix.forge }}
 
     steps:
       - uses: actions/checkout@v2
@@ -74,7 +77,3 @@ jobs:
           build-args: |
             MINECRAFT_VERSION=${{ matrix.minecraft }}
             FORGE_VERSION=${{ matrix.forge }}
-
-      - name: Output container name
-        run: |
-          echo "kamaradcoal/minecraft-forge:${{ matrix.forge }}-${{ github.sha }}"
