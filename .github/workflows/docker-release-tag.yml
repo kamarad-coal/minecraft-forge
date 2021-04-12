@@ -26,7 +26,7 @@ jobs:
           - 1.8.9
         include:
           - minecraft: 1.16.5
-            forge: 1.16.5-36.0.43
+            forge: 1.16.5-36.1.0
           - minecraft: 1.16.4
             forge: 1.16.4-35.1.4
           - minecraft: 1.15.2
