@@ -56,7 +56,7 @@ jobs:
         uses: crazy-max/ghaction-docker-meta@v2.3.0
         with:
           images: kamaradcoal/minecraft-forge
-          tag-semver: |
+          tags: |
             type=semver,pattern=${{ matrix.forge }}-{{version}}
             type=semver,pattern=${{ matrix.minecraft }}-{{version}}
             type=semver,pattern=${{ matrix.minecraft }}-{{major}}
