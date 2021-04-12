@@ -57,8 +57,8 @@ jobs:
         with:
           images: kamaradcoal/minecraft-forge
           tag-semver: |
-            ${{ matrix.forge }}-latest
-            ${{ matrix.minecraft }}-latest
+            type=semver,pattern=${{ matrix.forge }}-latest
+            type=semver,pattern=${{ matrix.minecraft }}-latest
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
