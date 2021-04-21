@@ -26,7 +26,7 @@ ADD /minecraft/run.sh /minecraft/cleanup.sh /minecraft/server.properties /minecr
 
 # Install packages.
 RUN apk upgrade --update && \
-    apk add --no-cache --update wget ca-certificates bash sudo && \
+    apk add --no-cache --update wget curl ca-certificates openssl bash git screen util-linux sudo shadow nss && \
     update-ca-certificates && \
     apk add --no-cache --update openjdk8-jre && \
     # Add "kamarad" user than can access "/minecraft"
