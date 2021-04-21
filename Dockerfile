@@ -26,7 +26,7 @@ ADD /minecraft/run.sh /minecraft/cleanup.sh /minecraft/server.properties /minecr
 
 # Install packages.
 RUN apk upgrade --update && \
-    apk add --no-cache --update wget curl ca-certificates openssl bash git screen util-linux sudo shadow nss && \
+    apk add --no-cache --update wget ca-certificates && \
     update-ca-certificates && \
     apk add --no-cache --update openjdk8-jre && \
     # Add "kamarad" user than can access "/minecraft"
@@ -42,7 +42,8 @@ RUN apk upgrade --update && \
     sh cleanup.sh && \
     rm -rf cleanup.sh && \
     chmod +x /minecraft/run.sh && \
-    rm -rf .git/ .github/ *.md
+    rm -rf .git/ .github/ *.md && \
+    rm -rf /var/cache/apk/*
 
 EXPOSE 25565
 
