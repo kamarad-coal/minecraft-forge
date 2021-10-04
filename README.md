@@ -5,6 +5,14 @@ Minecraft Forge Container
 
 Kamarad Coal is using the Minecraft Forge container to deploy servers on Kubernetes infrastructure in order to provide easy server spin-ups.
 
+## 🤝 Supporting
+
+If you are using one or more Renoki Co. open-source packages in your production apps, in presentation demos, hobby projects, school projects or so, spread some kind words about our work or sponsor our work via Patreon. 📦
+
+You will sometimes get exclusive content on tips about Laravel, AWS or Kubernetes on Patreon and some early-access to projects or packages.
+
+[<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" height="41" width="175" />](https://www.patreon.com/bePatron?u=10965171)
+
 ## Supported Minecraft versions
 
 Kamarad Coal tests & builds only the latest patch versions for each minor versions. However, you might find images for non-latest-patches, because at some point that version was the latest patch.

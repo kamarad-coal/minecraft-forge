@@ -22,27 +22,30 @@ LABEL maintainer="Kamarad Coal <alex@renoki.org>"
 
 WORKDIR /minecraft
 
-ADD minecraft/run.sh minecraft/cleanup.sh minecraft/server.properties /minecraft/
+ADD /minecraft/run.sh /minecraft/run.sh
+ADD /minecraft/cleanup.sh /minecraft/cleanup.sh
+ADD /minecraft/server.properties /minecraft/server.properties
 
 # Install packages.
 RUN apk upgrade --update && \
-    apk add --update wget curl ca-certificates openssl bash git screen util-linux sudo shadow nss openjdk8-jre && \
+    apk add --update wget curl ca-certificates openssl bash git screen util-linux sudo shadow nss && \
     update-ca-certificates && \
-    # Add "kamarad" user than can access "/minecraft"
-    addgroup -g 1000 -S kamarad && \
+    apk add openjdk8-jre
+
+# Add "kamarad" user than can access "/minecraft"
+RUN addgroup -g 1000 -S kamarad && \
     adduser -u 1000 -S kamarad -G kamarad -h /minecraft && \
     echo "kamarad ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/kamarad && \
-    chown kamarad:kamarad /minecraft && \
-    # Download & install the JAR file for the current version.
-    wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/${FORGE_VERSION}/forge-${FORGE_VERSION}-installer.jar && \
+    chown kamarad:kamarad /minecraft
+
+# Download & install the JAR file for the current version.
+RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/${FORGE_VERSION}/forge-${FORGE_VERSION}-installer.jar && \
     mkdir /minecraft/mods && \
     java -jar forge-${FORGE_VERSION}-installer.jar --installServer && \
     chmod +x cleanup.sh && \
     sh cleanup.sh && \
     rm -rf cleanup.sh && \
-    chmod +x /minecraft/run.sh && \
-    rm -rf .git/ .github/ *.md && \
-    rm -rf /var/cache/apk/*
+    chmod +x /minecraft/run.sh
 
 EXPOSE 25565
 
