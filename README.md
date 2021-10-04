@@ -2,7 +2,6 @@ Minecraft Forge Container
 ==========================
 
 ![Testing](https://github.com/kamarad-coal/minecraft-forge/workflows/Testing/badge.svg?branch=master)
-![Docker Pulls](https://img.shields.io/docker/pulls/kamaradcoal/minecraft-forge)
 
 Kamarad Coal is using the Minecraft Forge container to deploy servers on Kubernetes infrastructure in order to provide easy server spin-ups.
 
@@ -28,13 +27,13 @@ The following Minecraft Forge versions are deployed on an day-to-day basis:
 Forge builds support multiple Minecraft versions for each Github tag. The format for container tags is the following:
 
 ```
-kamaradcoal/minecraft-forge:[forge_version]-[repo_tag]
+quay.io/kamaradcoal/minecraft-forge:[forge_version]-[repo_tag]
 ```
 
 For example, this is going to be the latest tag for Minecraft Forge `1.16.5-36.1.0`:
 
 ```
-kamaradcoal/minecraft-forge:1.16.5-36.1.0-latest
+quay.io/kamaradcoal/minecraft-forge:1.16.5-36.1.0-latest
 ```
 
 ### Version Specific Tags
@@ -42,13 +41,13 @@ kamaradcoal/minecraft-forge:1.16.5-36.1.0-latest
 For version-specific tags, you might use the following image and tag, `1.0.0` being the repo tag:
 
 ```
-kamaradcoal/minecraft-forge:1.16.5-36.1.0-1.0.0
+quay.io/kamaradcoal/minecraft-forge:1.16.5-36.1.0-1.0.0
 ```
 
 For Minecraft version-specific tags, you might use the following image and tag, where `1.0.0` is the repo tag and `1.16.5` is the Minecraft version:
 
 ```
-kamaradcoal/minecraft-forge:1.16.5-1.0.0
+quay.io/kamaradcoal/minecraft-forge:1.16.5-1.0.0
 ```
 
 ### Minecraft Majors and Minor versions
@@ -56,13 +55,13 @@ kamaradcoal/minecraft-forge:1.16.5-1.0.0
 You can also specify major repo versions, where `1.0` means `1.0.x`:
 
 ```
-kamaradcoal/minecraft-forge:1.16.5-1.0
+quay.io/kamaradcoal/minecraft-forge:1.16.5-1.0
 ```
 
 You can also specify major.minor repo versions, where `1` means `1.x` (all 1.x versions):
 
 ```
-kamaradcoal/minecraft-forge:1.16.5-1
+quay.io/kamaradcoal/minecraft-forge:1.16.5-1
 ```
 
 ### Latest Tags
@@ -70,11 +69,11 @@ kamaradcoal/minecraft-forge:1.16.5-1
 For latest tags, use `latest` instead any other version, either by Minecraft version or by Forge version:
 
 ```
-kamaradcoal/minecraft-forge:1.16.5-latest
+quay.io/kamaradcoal/minecraft-forge:1.16.5-latest
 ```
 
 ```
-kamaradcoal/minecraft-forge:1.16.5-36.1.0-latest
+quay.io/kamaradcoal/minecraft-forge:1.16.5-36.1.0-latest
 ```
 
 ## Kubernetes Integration
